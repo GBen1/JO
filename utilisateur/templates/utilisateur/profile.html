@@ -1,0 +1,417 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    href="{% static 'css/style.css' %}"
+    >
+    <link 
+    rel="stylesheet" 
+    media="screen and (max-width: 768px)" 
+    href="{% static 'css/styles-mobile.css' %}"
+       >
+    <link 
+    rel="stylesheet" 
+    media="screen and (min-width: 769px) and (max-width: 1024px)" 
+    href="{% static 'css/styles-tablet.css' %}"
+       >
+    <link 
+    rel="stylesheet"
+     media="screen and (width: 768px)" 
+     href="{% static 'css/styles-ipadmini.css' %}"
+         >
+    <!--<link rel="stylesheet" media="screen and (min-width: 1025px)" href="styles-desktop.css">-->
+    <title>JO2024</title>
+
+<link 
+rel="preconnect" 
+href="https://fonts.googleapis.com"
+>
+<link 
+rel="preconnect" 
+href="https://fonts.gstatic.com" crossorigin
+>
+<!-- <link 
+href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto:wght@100&display=swap" 
+rel="stylesheet"
+> -->
+
+<link 
+href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Roboto:wght@300&display=swap" 
+rel="stylesheet"
+>
+
+<style>  
+  h1 , nav , footer { 
+  /*font-family: 'Caprasimo', sans-serif; */
+  font-family: 'Comfortaa', sans-serif;
+  }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="wrapper"> 
+    <header>    
+     <div class="logo-wrapper">
+       <a href="../../index.html">
+        <img
+        src="{% static 'img/JO2024.png' %}"
+         alt="JO2024 logo"
+         width="125"
+         height="125"
+          class="logo"/>	 
+       </a>
+      </div>	   
+
+	 <h1> 
+    <a href="../profile/" style="color: black; text-decoration: none;"> JO 2024</a> 
+   </h1> 		
+  </header>
+  
+  	<nav>
+     <ul>
+ 
+      <li><a href="https://jo2024.ovh/accounts/logout/">Logout ({{user}})</a></li>
+     </ul>
+  	</nav>
+    
+    
+    <div class="content" >
+      
+      {% block content %}
+
+      {% if user == 'admin@jo24.fr' %} 
+      <h1  style="text-align:center">MES OFFRES</h1>
+
+      <table style="border: 1px solid black;overflow: auto; table-layout: fixed;width:100%" >  
+        <tr >
+          <td style="border: 1px solid black;text-align:center">Image</td> 
+          <td style="border: 1px solid black;text-align:center">Offre</td>
+          <td style="border: 1px solid black;text-align:center">Description</td>
+          <td style="border: 1px solid black;text-align:center">Prix</td>
+          <td style="border: 1px solid black;text-align:center">Modifier</td>
+        </tr>
+    
+        {% for n in data %}  
+        <tr>
+          <td style="border: 1px solid black;max-width:600px;text-align:center">
+          <div class="uploads">
+            <a href="https://jo2024.ovh/static/{{ n.image }}">
+             <img
+             src="https://jo2024.ovh//static/{{ n.image }}"
+              alt="{{ n.image }}"
+               class="img"
+               width=100%
+               height=10%
+               />	 
+            </a>
+           </div>	
+          </td>
+    
+         
+          <td style="border: 1px solid black;text-align:center">{{ n.libelle }}</td>
+          <td style="border: 1px solid black;text-align:center">{{ n.description }}</td>
+          <td style="border: 1px solid black;text-align:center">{{ n.prix }}€</td>
+              
+          <td style="border: 1px solid black;max-width:600px;text-align:center">          
+            <form method="POST" enctype="multipart/form-data" >     
+                {% csrf_token %}
+                <table style="overflow:clip; table-layout: fixed;width:100%" >
+                <b>  {{form2.as_p}} </b>
+                 </table>
+                  <input type="hidden" name= 'modify' value="{{ n.id }}">
+                  <input type="submit"  value="Valider" style="font-weight:bold" >
+              </form>
+            </td>
+         
+        </tr>        
+        {% endfor %}
+      </table>
+
+     
+      
+    </div>
+  <div class="aside">
+    <aside>
+
+        <section>
+          <br>
+          <h1  style="text-align:center">Statistiques de vente</h1>
+          <br>
+          <table  style="border: 1px solid black;margin-left: auto;margin-right: auto;border-collapse: collapse;width: 500px;text-align: center">   
+            <tr >
+              <td style="border: 1px solid black;text-align:center">Offre</td> 
+              <td style="border: 1px solid black;text-align:center">Nombre de Ventes</td>
+            </tr>
+            {% for h in data4 %}
+            <tr >
+            <td style="border: 1px solid black;text-align:center">{{ h.libelle }}</td>
+            <td style="border: 1px solid black;text-align:center">{{ h.somme }}</td>
+          </tr>
+            {% endfor %}
+            </table>
+            <br>
+            <br>
+            <h1  style="text-align:center">Création Nouvelle Offre</h1>
+            
+            <form method="POST" enctype="multipart/form-data" >
+    
+    
+              <!--  <form method="POST"  action ="www.google.com"> --> 
+              
+                {% csrf_token %}
+              
+                  <table width="40%" height="100vw" >
+                    
+                      {{form.as_table}}
+                      
+                  </table>
+                  <input type="hidden" name= 'create' >
+                  <input type="submit" value="Valider" >
+                 
+              </form>
+          </section>
+        </aside>
+      </div>
+          {% else %}
+          <h1  style="text-align:center"> Les Offres </h1>
+          
+          <table style="border: 1px solid black;overflow: auto; table-layout: fixed;width:100%" >   
+            <tr >
+              <td style="border: 1px solid black;text-align:center">Image</td> 
+              <td style="border: 1px solid black;text-align:center">Offre</td>
+              <td style="border: 1px solid black;text-align:center">Description</td>
+              <td style="border: 1px solid black;text-align:center">Prix</td>
+              <td style="border: 1px solid black;text-align:center">Acheter</td>
+            </tr>
+        
+            {% for n in data %}  
+            <tr>
+              <td style="border: 1px solid black;max-width:600px;text-align:center">
+              <div class="uploads">
+                <a href="https://jo2024.ovh/static/{{ n.image }}">
+                 <img
+                 src="https://jo2024.ovh//static/{{ n.image }}"
+                  alt="{{ n.image }}"
+                   class="img"
+                   width=100%
+                   height=10%
+                   />	 
+                </a>
+               </div>	
+              </td>
+        
+             
+              <td style="border: 1px solid black;text-align:center">{{ n.libelle }}</td>
+              <td style="border: 1px solid black;text-align:center">{{ n.description }}</td>
+              <td style="border: 1px solid black;text-align:center">{{ n.prix }}€</td>
+                  
+              <td style="border: 1px solid black;text-align:center">           
+                <form method="POST" enctype="multipart/form-data" >   
+                  {% csrf_token %}
+                   <!--<table width="80%" height="200vw" >              
+                     </table>-->  
+                      <input type="hidden" name= 'addpanier' value="{{ n.id }}">
+                      <input type="hidden" name= 'addpanier2' value="{{ n.prix }}">
+                      <input type="hidden" name= 'addpanier3' value="{{ n.libelle }}">
+                      <input type="submit"  value="Ajouter au panier" style="border:4px double #04fa0c;font-size: 110%; cursor: pointer;border-radius: 10px;width:80%;background-color:lightgreen;color:black;font-weight:bold" >
+                  </form></td> 
+             
+            </tr>        
+            {% endfor %}
+          </table>
+          
+         
+        
+        </div>
+
+        <div class="aside">
+          <aside>
+
+           
+            <h1  style="text-align:center">Mon Panier</h1>
+            <br>
+              
+              
+           <table style="overflow:hidden;overflow: auto; table-layout: fixed;width:100%;border: 1px solid black;margin-left: auto;margin-right: auto;border-collapse: collapse;text-align: center">   
+              {% if data2.count > 0 %}
+              
+              <tr>
+                <td style="border: 1px solid black;text-align:center">Offre</td>
+                <td style="border: 1px solid black;text-align:center">Prix</td>
+                <td style="border: 1px solid black;text-align:center">Supprimer</td>
+              </tr>
+              {% endif %}
+               
+              {% for z in data2 %}
+            
+              <tr>
+              
+                <td style="border: 1px solid black;text-align:center">{{ z.libelle }}</td>
+                <td style="border: 1px solid black;text-align:center">{{ z.prix }}€</td>
+                    
+                <td style="border: 1px solid black;text-align:center">           
+                  <form method="POST" enctype="multipart/form-data" >   
+                    {% csrf_token %}
+                     <!--<table width="80%" height="200vw" >              
+                       </table>-->  
+                        <input type="hidden" name= 'delpanier' value="{{ z.id }}">
+                        <input type="submit"  value="Supprimer du panier" style="border:4px double #cccccc;font-size: 90%; cursor: pointer;border-radius: 10px;width:80%;background-color:lightcoral;color:black;font-weight:bold" >
+                    </form></td> 
+               
+                
+                  </tr>
+              {% endfor %}
+            </table>
+              {% if data2.count > 0 %}
+               
+               <br>
+                 <table  style="overflow: auto; table-layout: fixed;width:100%;border: 1px solid black;margin-left: auto;margin-right: auto;border-collapse: collapse;text-align: center"> 
+             
+                <td style="border: 1px solid black;text-align:center">Total : {{sum}}€ </td>
+                <td style="border: 1px solid black;text-align:center">
+                
+                  <form method="POST" enctype="multipart/form-data" >   
+                    {% csrf_token %}
+                     <!--<table width="80%" height="200vw" >              
+                       </table>-->  
+                       <input type="hidden" name= 'payement' >
+                        <input onclick= "payement_alert()" type="submit"  value="Payement" style="border:4px double #041bf2;font-size: 90%; cursor: pointer;border-radius: 10px;width:80%;background-color:lightblue;color:black;font-weight:bold" >
+                    </form>
+                
+                </td>
+              </tr>
+              {% endif %}
+
+            </table>
+
+            {% if data3.count > 0 %}
+            <h1  style="text-align:center">Mes Commandes</h1>
+            <br> 
+            
+            <table  style="overflow:hidden;overflow: auto; table-layout: fixed;width:100%;border: 1px solid black;margin-left: auto;margin-right: auto;border-collapse: collapse;text-align: center">  
+              <tr>
+                <td style="border: 1px solid black;text-align:center">Numéro de Commande</td>
+                <td style="border: 1px solid black;text-align:center">Offre</td>
+                <td style="border: 1px solid black;text-align:center">Prix</td>
+                <td style="border: 1px solid black;text-align:center">Billet QRcode</td>
+                <td style="border: 1px solid black;text-align:center">Billet HEXA</td>
+              </tr>
+              {% for y in data3 %}
+              <tr>
+                <td style="border: 1px solid black;text-align:center">{{ y.id }}</td>
+              <td style="border: 1px solid black;text-align:center">{{ y.libelle }}</td>
+              <td style="border: 1px solid black;text-align:center">{{ y.prix }}</td>
+             
+              <td style="border: 1px solid black;max-width:600px;text-align:center">
+                <div class="uploads">
+                  <a href="https://jo2024.ovh//static/keys/qrcode/{{ y.QRCODE }}">
+                   <img
+                   src="https://jo2024.ovh//static/keys/qrcode/{{ y.QRCODE }}"
+                    alt="{{ n.image }}"
+                     class="img"
+                     width=80%
+                     height=20%
+                     />	 
+                  </a>
+                 	
+                </td>
+                <td style="border: 1px solid black;text-align:center">
+                  <input type="text" value="{{ y.HEXA }}" id="myInput"  style="width:80%;line-height:5em" >
+                  
+              </td>
+                
+              </tr>
+              {% endfor %}
+            </table>
+            {% endif %}
+      
+          </aside>
+        </div>
+          {% endif %}
+    
+          {% endblock %}
+        
+  
+  
+  
+  <footer style="background-image: url({% static 'img/JO.png' %})">
+    <div class="upper-footer">
+        <ul>          
+          <li><a href="index.html">Home</a></li>
+          
+          <li><a href="mailto:g-benayoun@live.fr">Contact</a></li>          
+        <!-- <li><a href="Javascript:void(0);">Mes autres projets</a></li>-->
+        </ul>
+      </div>
+     
+      <div class="socials">
+         <a 
+         style="text-decoration:none" 
+         href="https://www.facebook.com/Paris2024/" >
+          <img 
+          src="{% static 'img/facebook.png' %}"
+          alt="Facebook logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://twitter.com/Paris2024" >
+          <img 
+          src="{% static 'img/twitter.png' %}"       
+          alt="Twitter logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://www.instagram.com/paris2024" >
+          <img 
+          src="{% static 'img/instagram.png' %}" 
+          alt="Instagram logo"
+          />
+         </a>     
+      </div>
+	  
+	     <div class="watermark">
+        @2024
+      </div>	
+	</footer>
+ </div> 
+
+<script >
+
+function wrapper() {
+ 
+ var reveals = document.querySelectorAll(".wrapper");
+
+ for (var i = 0; i < reveals.length; i++) {
+   var windowHeight = window.innerHeight;
+   var elementTop = reveals[i].getBoundingClientRect().top;
+  
+   if (elementTop < 0) {
+     reveals[i].classList.add("active");
+   } else {
+     reveals[i].classList.remove("active");
+   }
+ }
+
+}
+window.addEventListener("scroll", wrapper);
+
+
+
+function payement_alert()
+{
+  alert("Payement effectué")
+
+}
+</script>
+
+</body>
+</html>

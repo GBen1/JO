@@ -1,0 +1,231 @@
+/* Styles pour les écrans de tablettes */
+/*@media screen and (width = 768px) */
+@media screen and (width = 768px) {
+    /* grid */
+    .wrapper {
+      transition: all 500ms;
+      display: grid; /* ou inline grip */
+      grid : 128px 128px 1fr 5fr 1fr / repeat(3, 1fr);
+      grid-template-areas:
+      "header header header"
+      "nav nav nav"
+      "aside aside aside"
+      "content content content"
+      "content content content"
+      "content content content"
+      "footer  footer  footer";
+      grid-gap: 5px;
+    
+      /* grid-template-columns: repeat(3, 1fr); /* = 200px 200px 200px; 
+      grid-template-rows: 128px 128px 1fr 5fr 1fr; 
+        background : black; */
+      }
+    
+    
+      .wrapper.active {
+        transition: all 500ms;
+        display: grid; /* ou inline grip */
+        grid : 128px 128px 1fr 5fr 1fr / repeat(3, 1fr);
+        grid-template-areas:
+        "header header header"
+        ". . nav"
+        "aside aside aside"
+        "content content content"
+        "content content content"
+        "content content content"
+        "footer  footer  footer";
+        grid-gap: 5px;
+    
+         /* grid-template-columns: repeat(3, 1fr); /* = 200px 200px 200px; 
+        grid-template-rows: 128px 128px 1fr 5fr 1fr;
+          background : black; */
+        }
+        table.center {
+          margin-left:auto; 
+          margin-right:auto;
+        }
+    
+    header {
+    grid-area: header;
+    position: sticky;
+    display: flex;
+    top: 0;
+    left: 0;
+    background: linear-gradient(blue, white, red);
+    max-height: 128px;
+    border-radius : 10px;
+    overflow: clip;
+    
+    /* width: calc(66% + 5px); */
+    }
+    
+    header .logo-wrapper {
+      border-radius: 0 0 0 10px;
+     /* box-shadow: 5px 0 10px white; */
+    
+      /* max-width: 100%;  Permet de redimensionner les images en fonction de la largeur de leur conteneur 
+     height: auto; /* Garantit que la hauteur de l'image s'ajuste automatiquement à la largeur 
+      grid-area: header;
+      position: sticky;
+      display: flex;
+              align-items: center;
+              justify-content: left; */
+    }
+    
+    
+    
+    header h1 {
+    grid-area: header;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10vw;
+    font-size: 25px;
+    color : black;
+    
+        /* margin-left : 20%; */
+    }
+    
+    
+    nav {
+    grid-area: nav;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 128px;
+    overflow: clip;
+    background: linear-gradient(blue, white, red);
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    color : black;
+    border-radius : 10px;
+    
+    /* text-align: center; 
+    font-weight : bold;
+    margin-top : 20px;
+    overflow : auto;
+    margin-left: 20vw; 
+    max-width: 100%;
+    max-height: 128px;
+    display: flex; */
+    }
+    
+    /*
+    nav {
+    position: fixed;
+    top: 0;
+    font-size: 20px;
+    margin-left : 70%;
+    color : #ff7b00;
+    font-weight : bold;
+    margin-top : 20px;
+    overflow : auto;
+    }
+    */
+    nav ul li {
+    grid-area: nav;
+    display:inline-grid;
+    justify-content: space-between;
+    list-style: align-items;
+    text-align: center;
+    margin-right: 60px; 
+    
+        /* overflow : auto;
+        margin-top: 25px;
+        text-decoration: underline; */
+        }
+    
+      nav ul li a, nav ul li a:active, nav ul li a:hover, nav ul li a:enabled { 
+        color: black;
+        font-weight: bold; 
+        text-decoration: none; 
+      }
+    
+      .content{
+        grid-area: content;
+        background-color: rgba(255, 255, 0, 0.692);
+        border-radius : 10px;
+    
+       /* align-self:start; alignement vertical 
+      /justify-self:end;  alignement horizontal
+          margin-top: 120px; */
+      }
+    
+      .aside{
+      grid-area: aside;
+      background-color: rgba(0, 255, 60, 0.699);
+      border-radius : 10px;
+    
+       /* margin-top: 120px;
+       align-self:center; alignement vertical 
+      justify-self:start;  alignement horizontal
+         background: radial-gradient( purple,yellow,lightgreen,red,black,blue);
+        background: linear-gradient( lightgreen,white); */
+      }
+    
+    /* end grid */
+    
+    footer {
+    grid-area: footer;
+    position: relative;
+    overflow: clip;
+    border-radius : 10px;
+    display: flex;
+    min-height: 50px;
+    width: 100%;
+    background-image: url("fruits.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* background: #039b36de;
+    margin-right: 0px;
+        overflow : auto;
+      margin-top : 5px; */
+    }
+    
+    footer ul li {
+    position: relative; 
+    display: inline;
+    padding : 10px ;
+    font-size: 20px; 
+    right: 2vw; 
+    color : black;
+    
+    /* text-decoration: underline;	*/
+      }
+    
+     
+      /* stylelint-disable-next-line no-descending-specificity */
+      footer div ul li a, footer div ul li a:active, footer div ul li a:hover,footer div ul li a:enabled { 
+        color: white; 
+        font-weight: 0; 
+        text-decoration: none; 
+        text-shadow: black 1px 0 15px
+       }
+    
+     
+     .socials /*footer div a */ {	
+    position: relative; 
+    text-decoration: none;
+    justify-content: space-between;
+    font-weight: bold;
+    display: inline-block;
+    color : #039b36de;
+    box-shadow: 5px 5px 15px white;
+    border-radius: 50%;
+    margin-left: 70vw; 
+    align-self:center
+    
+    /* margin-right: 60%; 
+    margin-left: 9vw;
+    left : 83vw; */
+      }
+    
+      .watermark {
+        color : white;
+      }
+            
+    }

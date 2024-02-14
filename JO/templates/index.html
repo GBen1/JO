@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    href="{% static 'css/style.css' %}"
+    >
+    <link 
+    rel="stylesheet" 
+    media="screen and (max-width: 768px)" 
+    href="{% static 'css/styles-mobile.css' %}"
+       >
+    <link 
+    rel="stylesheet" 
+    media="screen and (min-width: 769px) and (max-width: 1024px)" 
+    href="{% static 'css/styles-tablet.css' %}"
+       >
+    <link 
+    rel="stylesheet"
+     media="screen and (width: 768px)" 
+     href="{% static 'css/styles-ipadmini.css' %}"
+         >
+    <!--<link rel="stylesheet" media="screen and (min-width: 1025px)" href="styles-desktop.css">-->
+    <title>JO2024</title>
+
+<link 
+rel="preconnect" 
+href="https://fonts.googleapis.com"
+>
+<link 
+rel="preconnect" 
+href="https://fonts.gstatic.com" crossorigin
+>
+<!-- <link 
+href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto:wght@100&display=swap" 
+rel="stylesheet"
+> -->
+
+<link 
+href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Roboto:wght@300&display=swap" 
+rel="stylesheet"
+>
+
+<style>  
+  h1 , nav , footer { 
+  /*font-family: 'Caprasimo', sans-serif; */
+  font-family: 'Comfortaa', sans-serif;
+  }
+  </style>
+</head>
+
+<body>
+ <div class="wrapper"> 
+  <header>    
+	 <div class="logo-wrapper">
+     <a href="/index.html">
+		  <img
+      src="{% static 'img/JO2024.png' %}"
+       alt="JO2024 logo"
+       width="125"
+       height="125"
+        class="logo"/>	 
+     </a>
+	  </div>	   
+
+	 <h1> 
+    <a href="/index.html" style="color: black; text-decoration: none;"> JO 2024</a> 
+   </h1> 		
+  </header>
+  
+  	<nav>
+     <ul>
+      <li><a href="/offres.html">Tickets</a></li>
+      <li><a href="/registration.html">Register</a></li>
+      <li><a href="/accounts/login/" >Login</a></li>
+     </ul> 
+  	</nav>
+    
+  <div class="content">
+    <h1> Les Sports </h1>
+    
+    <table style=" overflow: auto; table-layout: fixed;width:100%" >  
+      <tr>
+      <td style="max-width:600px;text-align:center">
+
+      <a href="index.html">
+		  <img
+      src="{% static 'img/ESCRIME.png' %}"
+       alt="ESCRIME"
+       width=60%
+       height=10%
+        class="logo"/>	 
+     </a>
+
+    </td>
+    <td style="text-align:left">
+      L’escrime trouve ses origines dans le combat d’épée, qui apparaît il y a plusieurs millénaires, puisque des représentations de combattants à l’épée ont été datées de 1190 avant J-C. Plus tard, l’escrime, qui représentait initialement un entraînement militaire, devient un sport sous l’impulsion de maîtres d’armes français, italiens et allemands. Aujourd’hui, l’escrime est un sport d’ampleur mondiale, puisqu’elle s’est développée de manière très compétitive non seulement en Europe mais aussi en Asie, en Océanie, en Amérique et en Afrique, avec 157 fédérations nationales membres de la Fédération internationale d’Escrime.
+    
+    </td>
+    </tr>
+     
+    <tr>
+      <td style="max-width:600px;text-align:center">
+
+     <a href="index.html">
+		  <img
+      src="{% static 'img/ARC.png' %}"
+       alt="ARC"
+       width=60%
+       height=10%
+        class="logo"/>	 
+     </a>
+
+    </td>
+    <td style="text-align:left">
+      Le tir à l’arc est l’un des sports les plus anciens de l’humanité, puisqu’il s’est développé en même temps que la civilisation humaine, initialement en tant qu’instrument pour la chasse et la guerre. Dès 1200 avant J-C, Hitties et Assyriens se munissaient de flèches et d’arcs sur le champ de bataille. Les premiers tournois connus se déroulèrent en Chine, entre 1027 et 256 avant J-C sous la dynastie des Zhou. En 1931, le sport se structure au niveau international, et une fédération internationale est créée, devenue aujourd’hui World Archery.
+    
+    </td>
+    </tr>
+
+      <tr>
+      <td style="max-width:600px;text-align:center">
+
+     <a href="index.html">
+		  <img
+      src="{% static 'img/NATATION.jpg' %}"
+       alt="NATATION"
+       width=60%
+       height=10%
+        class="logo"/>	 
+     </a>
+    </td>
+    <td style="text-align:left">
+      La naissance de la natation remonte à la préhistoire, mais il faut attendre le 19e siècle pour que sa pratique devienne compétitive. La Société nationale britannique de natation est créée au début du siècle, et s’occupe d’organiser les premières compétitions. Celles-ci se pratiquent à l’époque en brasse, ou en une nage approchante ; elles se sont ensuite enrichies d’une grande variété de disciplines, aujourd’hui pratiquées aux Jeux Olympiques.
+    </td>
+    </tr>
+
+    
+    <tr>
+      <td style="max-width:600px;text-align:center">
+
+     <a href="index.html">
+		  <img
+      src="{% static 'img/100MHAIE.png' %}"
+       alt="100mhaie"
+       width=60%
+       height=10%
+        class="logo"/>	 
+     </a>
+       </td>
+    <td style="text-align:left">
+      L’athlétisme est le sport le plus ancien dont nous avons des traces, puisqu’il apparaît dès les Jeux Olympiques de l’Antiquité. Il est possible de trouver les champions d’athlétisme depuis 776 avant J-C. A l’époque, les Jeux Olympiques antiques comprennent des épreuves telles que des courses à pied et un pentathlon composé d’épreuves s’apparentant à une course, un saut en longueur, un lancer de disque, de la lutte et un lancer de javelot. Les premiers rassemblements modernes pouvant s’apparenter à des compétitions d’athlétisme ont lieu en Angleterre en 1840, dans le Shropshire. Ces championnats se développent et se multiplient dans les années 1880, ils prennent place initialement en Angleterre, aux USA et en Europe notamment. En 1912, la fédération internationale gérant les compétitions internationales d’athlétisme, l’IAAF (aujourd’hui World Athletics), est créée.
+    </td>
+    </tr>
+    </table> 
+    <br>
+
+</div>
+
+  <div class="aside">
+    <aside>
+      <h1  style="text-align:center">PARIS 2024</h1>
+      
+      <iframe width=100% height="315" src="https://www.youtube.com/embed/tfBX9dDEhy8?si=LQjIErWJEimuIPnr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <br>
+      <br>
+      <section>
+        Depuis la mise en place, en 2014, de l’Agenda olympique 2020, le CIO encourage les comités d’organisation à proposer de nouveaux sports au sein du programme olympique de leur édition, en tant que « sports additionnels ».
+        </section>
+        
+        <br>
+
+        <section>
+        C’est cette opportunité qui a permis à Paris 2024 de proposer au CIO l’inclusion de quatre sports additionnels à son programme. Paris 2024 a fait le choix de sports jeunes, créatifs, spectaculaires et en phase avec leur époque : le surf, l’escalade, le skateboard et le breaking. Paris 2024 s’inscrit dans la continuité des Jeux de Tokyo 2020, qui ont intégré à leur programme trois de ces sports que sont le surf, le skateboard, et l’escalade. 
+        </section>
+
+       <br>
+
+       <section>
+        Dans cet esprit de parler à un public jeune, et d’inviter la Génération 2024 à faire du sport jusqu’aux Jeux, Paris 2024 profite de cette opportunité pour reconduire ces trois sports, et pour y ajouter le breaking, et qui fera sa grande entrée sur la scène olympique à l’occasion des Jeux Olympiques de Paris 2024. 
+       </section>
+    </aside>
+	</div>
+  
+  
+  <footer style="background-image: url({% static 'img/JO.png' %})">
+    <div class="upper-footer">
+        <ul>          
+          <li><a href="/index.html">Home</a></li>
+          
+          <li><a href="mailto:g-benayoun@live.fr">Contact</a></li>          
+        <!-- <li><a href="Javascript:void(0);">Mes autres projets</a></li>-->
+        </ul>
+      </div>
+     
+      <div class="socials">
+         <a 
+         style="text-decoration:none" 
+         href="https://www.facebook.com/Paris2024/" >
+          <img 
+          src="{% static 'img/facebook.png' %}"
+          alt="Facebook logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://twitter.com/Paris2024" >
+          <img 
+          src="{% static 'img/twitter.png' %}"       
+          alt="Twitter logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://www.instagram.com/paris2024" >
+          <img 
+          src="{% static 'img/instagram.png' %}" 
+          alt="Instagram logo"
+          />
+         </a>     
+      </div>
+	  
+	     <div class="watermark">
+        @2024
+      </div>	
+	</footer>
+ </div> 
+
+<script 
+src="script.js"
+>
+</script>
+
+</body>
+</html>

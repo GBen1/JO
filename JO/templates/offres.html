@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    href="{% static 'css/style.css' %}"
+    >
+    <link 
+    rel="stylesheet" 
+    media="screen and (max-width: 768px)" 
+    href="{% static 'css/styles-mobile.css' %}"
+       >
+    <link 
+    rel="stylesheet" 
+    media="screen and (min-width: 769px) and (max-width: 1024px)" 
+    href="{% static 'css/styles-tablet.css' %}"
+       >
+    <link 
+    rel="stylesheet"
+     media="screen and (width: 768px)" 
+     href="{% static 'css/styles-ipadmini.css' %}"
+         >
+    <!--<link rel="stylesheet" media="screen and (min-width: 1025px)" href="styles-desktop.css">-->
+    <title>JO2024</title>
+
+<link 
+rel="preconnect" 
+href="https://fonts.googleapis.com"
+>
+<link 
+rel="preconnect" 
+href="https://fonts.gstatic.com" crossorigin
+>
+<!-- <link 
+href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto:wght@100&display=swap" 
+rel="stylesheet"
+> -->
+
+<link 
+href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Roboto:wght@300&display=swap" 
+rel="stylesheet"
+>
+
+<style>  
+  h1 , nav , footer { 
+  /*font-family: 'Caprasimo', sans-serif; */
+  font-family: 'Comfortaa', sans-serif;
+  }
+  </style>
+</head>
+
+<body>
+ <div class="wrapper"> 
+  <header>    
+	 <div class="logo-wrapper">
+     <a href="index.html">
+		  <img
+      src="{% static 'img/JO2024.png' %}"
+       alt="JO2024 logo"
+       width="125"
+       height="125"
+        class="logo"/>	 
+     </a>
+	  </div>	   
+
+	 <h1> 
+    <a href="index.html" style="color: black; text-decoration: none;"> JO 2024</a> 
+   </h1> 		
+  </header>
+  
+  	<nav>
+     <ul>
+      
+      <li><a href="/registration.html">Register</a></li>
+      <li><a href="accounts/login/" >Login</a></li>
+     </ul> 
+  	</nav>
+    
+  <div class="content">
+    <h1  style="text-align:center"> Les Offres </h1>
+    
+    {% block content %}
+    
+    
+    <table style="border: 1px solid black;overflow: auto; table-layout: fixed;width:100%" >  
+      <tr >
+        <td style="border: 1px solid black;text-align:center">Image</td> 
+        <td style="border: 1px solid black;text-align:center">Offre</td>
+        <td style="border: 1px solid black;text-align:center">Description</td>
+        <td style="border: 1px solid black;text-align:center">Prix</td>
+        <td style="border: 1px solid black;text-align:center">Acheter</td>
+      </tr>
+  
+      {% for n in data %}  
+      <tr>
+        <td style="border: 1px solid black;max-width:600px;text-align:center">
+        <div class="uploads">
+          <a href="https://jo2024.ovh/static/{{ n.image }}">
+           <img
+           src="https://jo2024.ovh//static/{{ n.image }}"
+            alt="{{ n.image }}"
+             class="img"
+             width=100%
+             height=10%
+             />	 
+          </a>
+         </div>	
+        </td>
+  
+       
+        <td style="border: 1px solid black;text-align:center">{{ n.libelle }}</td>
+        <td style="border: 1px solid black;text-align:center">{{ n.description }}</td>
+        <td style="border: 1px solid black;text-align:center">{{ n.prix }}€</td>
+            
+        <td style="border: 1px solid black;text-align:center">           
+          <form method="POST" enctype="multipart/form-data" >   
+            {% csrf_token %}
+             <!--<table width="80%" height="200vw" >              
+               </table>-->  
+                <input type="hidden" name= 'pk' value="{{ n.id }}">
+                <input onclick= "notlog_alert()" type="submit"  value="Acheter" style="border:4px double #04fa0c;font-size: 110%; cursor: pointer;border-radius: 10px;width:80%;background-color:lightgreen;color:black;font-weight:bold" >
+            </form></td> 
+       
+      </tr>        
+      {% endfor %}
+    </table>
+    
+    
+  
+  </div>
+
+  <div class="aside">
+    <aside>
+      <h1  style="text-align:center">Vérifier l' authenticité d'un billet</h1>
+      
+      
+      <br>
+      <h2>
+        <u>
+          Scannez le QRcode du Billet ou entrez sa valeur au format hexadécimal:
+        </u>
+      </h2>
+
+      <form method="POST" enctype="multipart/form-data" >     
+        {% csrf_token %}        
+       <table width="30%" height="100vw" >
+          {{form.as_table}}
+         </table>
+         <input type="hidden" name= 'verifier' value="">
+          <input type="submit"  value="Valider" style="font-weight:bold;" >
+      </form>
+      
+      
+      <h2 style="color:red;font-weight:bold">{{result}}</h2>
+      <br>
+     
+     
+    </aside>
+	</div>
+  {% endblock %}
+  
+  <footer style="background-image: url({% static 'img/JO.png' %})">
+    <div class="upper-footer">
+        <ul>          
+          <li><a href="index.html">Home</a></li>
+          
+          <li><a href="mailto:g-benayoun@live.fr">Contact</a></li>          
+        <!-- <li><a href="Javascript:void(0);">Mes autres projets</a></li>-->
+        </ul>
+      </div>
+     
+      <div class="socials">
+         <a 
+         style="text-decoration:none" 
+         href="https://www.facebook.com/Paris2024/" >
+          <img 
+          src="{% static 'img/facebook.png' %}"
+          alt="Facebook logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://twitter.com/Paris2024" >
+          <img 
+          src="{% static 'img/twitter.png' %}"       
+          alt="Twitter logo"
+          />
+         </a> 
+         <a 
+         style="text-decoration:none" 
+         href="https://www.instagram.com/paris2024" >
+          <img 
+          src="{% static 'img/instagram.png' %}" 
+          alt="Instagram logo"
+          />
+         </a>     
+      </div>
+	  
+	     <div class="watermark">
+        @2024
+      </div>	
+	</footer>
+ </div> 
+
+ <script >
+
+  function wrapper() {
+   
+   var reveals = document.querySelectorAll(".wrapper");
+  
+   for (var i = 0; i < reveals.length; i++) {
+     var windowHeight = window.innerHeight;
+     var elementTop = reveals[i].getBoundingClientRect().top;
+    
+     if (elementTop < 0) {
+       reveals[i].classList.add("active");
+     } else {
+       reveals[i].classList.remove("active");
+     }
+   }
+  
+  }
+  window.addEventListener("scroll", wrapper);
+  
+   
+  
+  function notlog_alert()
+  {
+    alert("Merci de selectionner l' offre depuis votre espace personnel")
+  
+  }
+  </script>
+
+</body>
+</html>
