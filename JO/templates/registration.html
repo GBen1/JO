@@ -96,7 +96,7 @@ rel="stylesheet"
                 {{form.as_table}}
                 
             </table>
-             <input onclick= "enregistrement_alert()" type="submit" value="Valider">
+             <input type="submit" value="Valider">
               <br>
             
 
@@ -194,20 +194,9 @@ rel="stylesheet"
   }
   window.addEventListener("scroll", wrapper);
   
-    function copytext() 
-  {
-    var copyText = document.getElementById("myInput");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-    alert("Successfully copied the text")
-  }
+ 
   
-  function enregistrement_alert()
-  {
-    alert("Votre compte a bien été créé ! vous pouvez vous identifier.")
-  
-  }
+ 
   </script>
   
 

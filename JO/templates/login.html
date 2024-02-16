@@ -81,8 +81,15 @@ rel="stylesheet"
     
   <div class="content">
     <h1> Login </h1>
-    
- 
+   
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %} style="color:red;font-weight:bold"> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <section>
       <form method="POST" enctype="multipart/form-data" >
 
@@ -175,10 +182,34 @@ rel="stylesheet"
 	</footer>
  </div> 
 
-<script 
-src="script.js"
->
-</script>
+ <script >
+
+  function wrapper() {
+   
+   var reveals = document.querySelectorAll(".wrapper");
+  
+   for (var i = 0; i < reveals.length; i++) {
+     var windowHeight = window.innerHeight;
+     var elementTop = reveals[i].getBoundingClientRect().top;
+    
+     if (elementTop < 0) {
+       reveals[i].classList.add("active");
+     } else {
+       reveals[i].classList.remove("active");
+     }
+   }
+  
+  }
+  window.addEventListener("scroll", wrapper);
+  
+  
+  
+  function registered_alert()
+  {
+    alert("Votre compte a bien été créé vous pouvez vous authentifier")
+  
+  }
+  </script>
 
 </body>
 </html>

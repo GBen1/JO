@@ -2,6 +2,7 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib import messages
 
 from django.contrib.auth.views import AuthenticationForm
 from django.contrib.auth.views import LoginView
@@ -64,6 +65,7 @@ def registration(request):
       fd.close() 
       #filepath.touch(mode=0o700)
       #os.chmod(filepath, 0o600)
+      messages.success(request, 'Compte créé avec succès ! Vous pouvez désormais vous identifier:')
       return HttpResponseRedirect('accounts/login/')
      else:
       return render(request,"registration.html", { "form":form})

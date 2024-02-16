@@ -44,20 +44,15 @@ class RegistrationForm(forms.Form):
     numb=[c for c in Mot_de_passe if c.isdigit()]
     spec=[c for c in Mot_de_passe if c in sc_list]
      
-    if (len(maj) == 0 or len(min) == 0) and len(numb) == 0:
+    if (len(maj) == 0 or len(min) == 0) or len(numb) == 0 or len(spec) == 0:
      raise forms.ValidationError([
            forms.ValidationError('Le mot de passe doit contenir des majuscules et des minuscules'),
             forms.ValidationError('Le mot de passe doit contenir au moins un chiffre'),
+            forms.ValidationError("Le mot de passe doit contenir au moins un caractère spécial '[@_!#$%^&*()<>?/\|}{~:]'"),
                         ])
-    elif len(maj) == 0 or len(min) == 0:
-     raise forms.ValidationError("Le mot de passe doit contenir des majuscules et des minuscules")
-    elif len(numb) == 0:
-     raise forms.ValidationError("Le mot de passe doit contenir au moins un chiffre")
-    elif len(spec) == 0:
-     raise forms.ValidationError("Le mot de passe doit contenir au moins un caractère spécial '[@_!#$%^&*()<>?/\|}{~:]'")
     elif Mot_de_passe != Confirmer_Mot_de_passe:
      raise forms.ValidationError("Les mots de passe ne sont pas identiques - Veuillez réessayer")  
-    elif User.objects.filter(username=self.cleaned_data["E_mail"]).exists():
+    elif User.objects.filter(username=self.cleaned_data["E_mail"].lower()).exists():
      raise forms.ValidationError("Cette adresse mail existe déjà") 
     return self.cleaned_data
     
