@@ -5,14 +5,13 @@
     .wrapper {
       transition: all 500ms;
       display: grid; /* ou inline grip */
-      grid : 128px 128px 1fr 5fr 1fr / repeat(3, 1fr);
+      grid : 128px 128px 4fr 6fr 1fr / repeat(3, 1fr);
       grid-template-areas:
       "header header header"
       "nav nav nav"
       "aside aside aside"
       "content content content"
-      "content content content"
-      "content content content"
+
       "footer  footer  footer";
        grid-gap: 5px;
     
@@ -24,13 +23,11 @@
       .wrapper.active {
         transition: all 500ms;
         display: grid; /* ou inline grip */
-        grid: 128px 128px 1fr 5fr 1fr / repeat(3, 1fr);
+        grid : 128px 128px 4fr 6fr 1fr / repeat(3, 1fr);
         grid-template-areas:
         "header header header"
         ". nav nav"
         "aside aside aside"
-        "content content content"
-        "content content content"
         "content content content"
         "footer  footer  footer";
         grid-gap: 5px;
