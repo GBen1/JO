@@ -6,7 +6,7 @@ from django.db import models
 from django.utils.text import slugify
 
 class Offres(models.Model):
-    libelle = models.CharField(max_length=1000)
+    libelle = models.CharField(max_length=50)
     slug = models.SlugField(blank=True)
     description = models.CharField(max_length=1000)
     prix = models.FloatField()
@@ -21,7 +21,7 @@ class Offres(models.Model):
 
 class Panier(models.Model):
     owner = models.CharField(max_length=100)
-    libelle = models.CharField(max_length=1000)
+    libelle = models.CharField(max_length=50)
     item = models.IntegerField()
     prix = models.FloatField()
     slug = models.SlugField(blank=True)

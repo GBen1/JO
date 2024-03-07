@@ -96,13 +96,6 @@ def offres(request):
           cle = RSA.import_key(open("/home/ubuntu/JO24/static/keys/PRIVKEY/"+User.objects.get(username=user).PRIVKEY).read(),passphrase=env('PEMKEY'))
           cipher = PKCS1_OAEP.new(cle)
 
-          #data2 = bytes(data2, 'utf-8')
-          #data2 = bytes(data2, 'utf-8').decode('utf-8')
-          #data2 = data2[2:len(data2)-1]
-         # data2 = data2.replace('\\\\', '\\')
-          #codecs.decode(data2, 'unicode_escape')
-          #data2 = bytes(data2, 'utf-8')
-          
           message_dechiffre = cipher.decrypt(ciphertext)         
           result = message_dechiffre.decode("utf-8")
           return render(request,"offres.html",{"data":data,"form":form,"result":result})
@@ -274,5 +267,4 @@ def profile(request):
 
 def vue_de_test(request):
     return HttpResponse("<h1>Vue de test </h1>")
-
 
